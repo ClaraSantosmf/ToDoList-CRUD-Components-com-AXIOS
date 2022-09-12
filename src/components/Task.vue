@@ -7,31 +7,36 @@
         <h2 class="card__title">{{task.title}}</h2>
         <p class="card__apply"> {{task.project}}</p>
         
-        <a href="#" class="card__exit"> Editar Tarefa </a>
+        <a href="#" class="card__exit" @click="$emit('mostrarEdicao', task)"> Editar Tarefa </a>
 
         <input type="checkbox" v-model="done" class="done" @change="$emit('mudandoEstadoTarefa', task)">
-        <br>
-    </div>
+        <div>
+        <EditTask v-show="task.isShow"></EditTask>
+
+        </div>
+        </div>
 
 </template>
 
-
 <script>
+import EditTask from './editTask.vue';
+
 export default {
     props: {
-        task: {type: Object, required:true }
+        task: { type: Object, required: true }
     },
-    data(){
-    return{
-      done:''
-    }
-  },
+    data() {
+        return {
+            done: ""
+        };
+    },
     computed: {
-        estadoDaClasse(){
-              let classe = this.task.pedding == "true"?  "pendente": "feito"
-              return classe;     
+        estadoDaClasse() {
+            let classe = this.task.pending ? "pendente" : "feito";
+            return classe;
         }
-    }
+    },
+    components: { EditTask }
 }
 </script>
 

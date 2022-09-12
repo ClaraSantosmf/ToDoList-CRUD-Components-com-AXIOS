@@ -4,7 +4,7 @@
     <barraProgresso :progresso="progresso"> </barraProgresso>
     <listaDeTasks  
     :tasks="tasks"
-    @editarTask="editadoTasks"
+    @mostrarEdicao="mostrarEdicao"
     @deletarTask="taskDeletada" 
     @mudandoEstadoTarefa="mudadoEstado" 
     /> 
@@ -29,19 +29,15 @@ export default {
     progresso(){
       let total = this.tasks.length
       let feitas = this.tasks.filter(tas => !tas.pending).length
-      return Math.round(feitas/total * 100) || 0
+      return Math.round((feitas/total) * 100) || 0
     }
   },
   methods:{
     taskAdicionada(task){
-      this.tasks.push({
-        title: task.title,
-        project: task.project,
-        dueTo: task.dueTo,
-        pending: "true",
-        isShow: task.isShow
-      })
-      T.postTasks(this.tasks[this.tasks.length -1 ])
+      // t = post(task)
+      // tasks = tasks.push(t) -- esse t ja tem um id
+      T.postTasks({...task, pending: true})
+      T.getTasks(r => this.tasks = r)
 
     },
     taskDeletada(task){
@@ -49,18 +45,20 @@ export default {
       T.deleteTasks(task)
     },
     mudadoEstado(task){
-      task.pedding = task.pedding == 'false'? 'true': 'false'
+      task.pending = !task.pending
       T.petTasks(task);
       },
-    editadoTasks(task, newTask){
-      this.tasks[this.tasks.indexOf(task)] = newTask
+    mostrarEdicao(task){
+      task.isShow = !task.isShow
       T.petTasks(task)
+      console.log(task)
     },
   },
   created(){ 
-    let self = this 
-    function populando(response){
-      self.tasks = response
+    const populando = (response) => {
+      console.log(response)
+      console.log(this)
+      this.tasks = response
     }
     T.getTasks(populando)
   }

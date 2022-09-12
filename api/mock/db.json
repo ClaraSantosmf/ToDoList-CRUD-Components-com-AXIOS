@@ -1,12 +1,12 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "dueTo": "12/12/2022",
-      "isShow": "false",
-      "pedding": "false",
-      "project": "Financeiro",
-      "title": "Fazer API get funcionar"
+      "title": "",
+      "project": "",
+      "dueTo": "",
+      "isShow": true,
+      "pending": true,
+      "id": 1
     }
   ]
 }

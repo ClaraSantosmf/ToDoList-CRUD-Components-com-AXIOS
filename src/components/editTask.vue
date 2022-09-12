@@ -1,8 +1,8 @@
 <template>
-  <div class="nova-tarefa">
-      <div class="novaTarefaForm">
+  <div class="editar-tarefa">
+      <div class="editandoTarefaForm">
           <form action="">
-        <label for="title">Nova Tarefa</label>
+        <label for="title">Edite a tarefa</label>
             <input placeholder="Title" id="title" type="text" v-model="title"/>
 
         <div class="selecaoDeProjeto">
@@ -22,7 +22,7 @@
             <label for="dueTo">Qual é a data limite?</label><br>
             <input v-model="dueTo" type="date" id="dueTo" data-inputmask="'alias': 'date'"/> <br>
         </div>
-        <button id="btnSave" @click.prevent="salvarTask">Save</button>
+        <button id="btnSave" @click.prevent="editarTask">Save</button>
         </form>
     </div>
   </div>
@@ -40,9 +40,8 @@ export default {
             }
         },
     methods:{
-        salvarTask() {
-            this.$emit('AdicionandoTask', {title: this.title, project: this.project, dueTo: this.dueTo, isShow: this.isShow, pending: this.pending})
-            this.title = ''
+        editarTask() {
+            this.$emit('editarTask', {title: this.title, project: this.project, dueTo: this.dueTo, isShow: !this.isShow, pending: this.pending})
         },
     }
 }

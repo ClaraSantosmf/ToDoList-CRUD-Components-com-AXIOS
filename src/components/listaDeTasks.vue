@@ -1,9 +1,9 @@
 <template>
   <div class="lista-de-tasks">
     <template v-if="tasks.length">
-      <Task v-for="task in tasks" :key="task.title" @deletarTask="dlt"
+      <Task v-for="task in tasks" :key="task.id" @deletarTask="dlt"
       @mudandoEstadoTarefa="ft" :task="task"
-      @editarTask="(tasksE) => {this.$emit('editarTask',tasksE)}"></Task>
+      @mostrarEdicao="tsk"></Task>
     </template>
     <p v-else class="sem-tarefas">Tire uma folga! Sem tarefas</p>
   </div>
@@ -21,6 +21,9 @@ export default {
     methods:{
       ft(task){
         this.$emit('mudandoEstadoTarefa', task)
+      },
+      tsk(task){
+        this.$emit('mostrarEdicao', task)
       },
       dlt(task){
         this.$emit('deletarTask', task)
