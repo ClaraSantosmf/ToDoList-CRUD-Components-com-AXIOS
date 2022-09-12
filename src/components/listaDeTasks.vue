@@ -36,5 +36,6 @@ export default {
 .lista-de-tasks{
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 </style>

@@ -1,20 +1,20 @@
 <template>
-     <div class="task" :class="estadoDaClasse">
-        <strong v-if="done">🍪 Tarefa Realizada!!</strong>
-        <div class="card__icon"><i class="fas fa-bolt"></i></div>
-        <p class="card__date">{{task.dueTo}}<i class="fas fa-times"></i></p>
-        <a href="#" class="card__exit" @click="$emit('deletarTask', task)"> Deletar </a>
-        <h2 class="card__title">{{task.title}}</h2>
-        <p class="card__apply"> {{task.project}}</p>
-        
-        <a href="#" class="card__exit" @click="$emit('mostrarEdicao', task)"> Editar Tarefa </a>
-
-        <input type="checkbox" v-model="done" class="done" @change="$emit('mudandoEstadoTarefa', task)">
-        <div>
-        <EditTask v-show="task.isShow"></EditTask>
-
-        </div>
-        </div>
+<div class="CabendoTodoMundo">
+  <div class="task" :class="estadoDaClasse">
+      <strong v-if="done">🍪 Tarefa Realizada!!</strong>
+      <div class="card__icon"><i class="fas fa-bolt"></i></div>
+      <p class="card__date">{{task.dueTo}}<i class="fas fa-times"></i></p>
+      <a href="#" class="card__exit" @click="$emit('deletarTask', task)"> Deletar </a>
+      <h2 class="card__title">{{task.title}}</h2>
+      <p class="card__apply"> {{task.project}}</p>
+      
+      <a href="#" class="card__exit" @click="$emit('mostrarEdicao', task)"> Editar Tarefa </a>
+      <input type="checkbox" v-model="done" class="done" @change="$emit('mudandoEstadoTarefa', task)">
+    </div>
+    <div>
+    <EditTask v-show="task.isShow"></EditTask>
+    </div>
+</div>
 
 </template>
 

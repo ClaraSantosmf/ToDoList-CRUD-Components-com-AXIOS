@@ -53,6 +53,9 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+.editar-tarefa{
+    z-index: 1;
+}
 .nova-tarefa{
     display: flex;
     justify-content: center;
