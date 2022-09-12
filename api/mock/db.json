@@ -1,44 +1,28 @@
 {
   "tasks": [
     {
-      "title": "TA ORGANIZADO!",
-      "project": "",
-      "dueTo": "",
+      "title": "Estudar Django",
+      "project": "Estudos",
+      "dueTo": "2022-03-12",
       "isShow": false,
       "pending": true,
-      "id": 4
+      "id": 1
     },
     {
-      "title": "",
-      "project": "",
-      "dueTo": "",
+      "title": "Arrumar a casa. Roupa!",
+      "project": "Financeiro",
+      "dueTo": "2022-12-12",
       "isShow": false,
       "pending": true,
-      "id": 5
+      "id": 2
     },
     {
-      "title": "",
-      "project": "",
-      "dueTo": "",
+      "title": "Pertubar pessoas. André!",
+      "project": "Trabalho",
+      "dueTo": "2022-02-24",
       "isShow": false,
-      "pending": true,
-      "id": 6
-    },
-    {
-      "title": "",
-      "project": "",
-      "dueTo": "",
-      "isShow": true,
-      "pending": true,
-      "id": 7
-    },
-    {
-      "title": "",
-      "project": "",
-      "dueTo": "",
-      "isShow": false,
-      "pending": true,
-      "id": 8
+      "pending": false,
+      "id": 3
     }
   ]
 }

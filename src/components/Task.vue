@@ -1,42 +1,54 @@
 <template>
-<div class="CabendoTodoMundo">
-  <div class="task" :class="estadoDaClasse">
+  <div class="CabendoTodoMundo">
+    <div class="task" :class="estadoDaClasse">
       <strong v-if="done">🍪 Tarefa Realizada!!</strong>
       <div class="card__icon"><i class="fas fa-bolt"></i></div>
-      <p class="card__date">{{task.dueTo}}<i class="fas fa-times"></i></p>
-      <a href="#" class="card__exit" @click="$emit('deletarTask', task)"> Deletar </a>
-      <h2 class="card__title">{{task.title}}</h2>
-      <p class="card__apply"> {{task.project}}</p>
-      
-      <a href="#" class="card__exit" @click="$emit('mostrarEdicao', task)"> Editar Tarefa </a>
-      <input type="checkbox" v-model="done" class="done" @change="$emit('mudandoEstadoTarefa', task)">
+      <p class="card__date">{{ task.dueTo }}<i class="fas fa-times"></i></p>
+      <a href="#" class="card__exit" @click="$emit('deletarTask', task)">
+        Deletar
+      </a>
+      <h2 class="card__title">{{ task.title }}</h2>
+      <p class="card__apply">{{ task.project }}</p>
+
+      <a href="#" class="card__exit" @click="$emit('mostrarEdicao', task)">
+        Editar Tarefa
+      </a>
+      <input
+        type="checkbox"
+        v-model="done"
+        class="done"
+        @change="$emit('mudandoEstadoTarefa', task)"
+      />
     </div>
     <div>
-    <EditTask v-show="task.isShow"></EditTask>
+      <EditTask
+        :task="task"
+        v-show="task.isShow"
+        @editarTask="(taskrecebida) => $emit('editarTask', taskrecebida)"
+      ></EditTask>
     </div>
-</div>
-
+  </div>
 </template>
 
 <script>
-import EditTask from './editTask.vue';
+import EditTask from "./editTask.vue"
 
 export default {
-    props: {
-        task: { type: Object, required: true }
+  props: {
+    task: { type: Object, required: true },
+  },
+  data() {
+    return {
+      done: "",
+    }
+  },
+  computed: {
+    estadoDaClasse() {
+      let classe = this.task.pending ? "pendente" : "feito"
+      return classe
     },
-    data() {
-        return {
-            done: ""
-        };
-    },
-    computed: {
-        estadoDaClasse() {
-            let classe = this.task.pending ? "pendente" : "feito";
-            return classe;
-        }
-    },
-    components: { EditTask }
+  },
+  components: { EditTask },
 }
 </script>
 
@@ -48,7 +60,8 @@ export default {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .main-container {
@@ -64,7 +77,6 @@ body {
 .heading__title {
   font-weight: 600;
 }
-
 
 .heading__link {
   text-decoration: none;
@@ -143,7 +155,7 @@ body {
   align-self: center;
 }
 
-.done{
+.done {
   position: absolute;
   right: 15px;
   bottom: 5px;
@@ -152,7 +164,7 @@ body {
 /* CARD BACKGROUNDS */
 
 .pendente {
-  background: radial-gradient(#fbc1cc, #fa99b2);;
+  background: radial-gradient(#fbc1cc, #fa99b2);
 }
 
 .feito {
@@ -166,5 +178,4 @@ body {
     justify-content: center;
   }
 }
-
 </style>
